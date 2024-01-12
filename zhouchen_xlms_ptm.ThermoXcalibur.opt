@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<processingOptions xmlns="http://www.matrixscience.com/xmlns/schema/mdro_proc_opts_1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" majorVersion="1" minorVersion="8" xsi:schemaLocation="http://www.matrixscience.com/xmlns/schema/mdro_proc_opts_1 http://www.matrixscience.com/xmlns/schema/mdro_proc_opts_1/mdro_proc_opts_1.xsd">
+	<scanOptions level="1">
+		<preferredSpectrumFormat>0</preferredSpectrumFormat>
+		<uncentroidingHalfWidth>0.02</uncentroidingHalfWidth>
+		<uncentroidingPointsPerDa>200</uncentroidingPointsPerDa>
+		<alwaysUncentroid>true</alwaysUncentroid>
+		<regriddingPointsPerDa>600</regriddingPointsPerDa>
+		<aggregationMethod>sum</aggregationMethod>
+		<minPeakCount>1</minPeakCount>
+		<minPeakCharge>1</minPeakCharge>
+		<maxPeakCharge>5</maxPeakCharge>
+	</scanOptions>
+	<scanOptions level="2">
+		<preferredSpectrumFormat>0</preferredSpectrumFormat>
+		<uncentroidingHalfWidth>0.02</uncentroidingHalfWidth>
+		<uncentroidingPointsPerDa>200</uncentroidingPointsPerDa>
+		<alwaysUncentroid>true</alwaysUncentroid>
+		<regriddingPointsPerDa>600</regriddingPointsPerDa>
+		<aggregationMethod>timedomain</aggregationMethod>
+		<minPeakCount>10</minPeakCount>
+		<minPeakCharge>1</minPeakCharge>
+		<maxPeakCharge>2</maxPeakCharge>
+		<usePrecursorAsMaxCharge>true</usePrecursorAsMaxCharge>
+		<precursorChargeSources>
+			<surveyScan priority="0"/>
+			<file priority="1"/>
+		</precursorChargeSources>
+		<precursorDefaultCharges>3</precursorDefaultCharges>
+		<redeterminePrecursorMZ>true</redeterminePrecursorMZ>
+		<precursorMZTolerance>1.2</precursorMZTolerance>
+		<minPrecursorPeakCount>1</minPrecursorPeakCount>
+		<maxPrecursorPeakCount>1</maxPrecursorPeakCount>
+		<ignoreSingleChargedPrecursor>false</ignoreSingleChargedPrecursor>
+	</scanOptions>
+	<timeDomainOptions>
+		<minPrecursorMass>700</minPrecursorMass>
+		<maxPrecursorMass>16000</maxPrecursorMass>
+		<precursorGroupingTolerance>0.01</precursorGroupingTolerance>
+		<precursorIonMobilityGroupTol>0.026</precursorIonMobilityGroupTol>
+		<maxIntermediateTime>0</maxIntermediateTime>
+		<maxIntermediateScans>5</maxIntermediateScans>
+		<useInterScanCount>false</useInterScanCount>
+		<minScansInGroup>1</minScansInGroup>
+		<summingType>0</summingType>
+		<summingFirstDissType>1000000</summingFirstDissType>
+		<summingSecondDissType>1000000</summingSecondDissType>
+		<summingNormaliseIntensities>false</summingNormaliseIntensities>
+		<mergeReporterFromDissType>-1</mergeReporterFromDissType>
+		<mergeReporterIntoDissType>-1</mergeReporterIntoDissType>
+		<moveReporterIonPeaks>false</moveReporterIonPeaks>
+		<moveReporterIonPeaksMS3>false</moveReporterIonPeaksMS3>
+	</timeDomainOptions>
+	<peakSelectionOptions>
+		<filteringThreshold>0.8</filteringThreshold>
+		<minFilteringPeakMZ>50</minFilteringPeakMZ>
+		<maxFilteringPeakMZ>100000</maxFilteringPeakMZ>
+		<filteringMinSNRatio>1</filteringMinSNRatio>
+		<minPeakWidth>0.002</minPeakWidth>
+		<expectedPeakWidth>0.02</expectedPeakWidth>
+		<maxPeakWidth>0.2</maxPeakWidth>
+		<maxIterations>500</maxIterations>
+		<rejectWidthOutliers>false</rejectWidthOutliers>
+		<baselineCorrection>false</baselineCorrection>
+		<baselineSubtractMethod>0</baselineSubtractMethod>
+		<peakFitMethod>0</peakFitMethod>
+		<isotopeEnvelopeMode>0</isotopeEnvelopeMode>
+		<isotopePeakIntensities></isotopePeakIntensities>
+		<singlePeakCharge>1</singlePeakCharge>
+		<singlePeakWindow>false</singlePeakWindow>
+		<minSglPeakWindowMZ>112.5</minSglPeakWindowMZ>
+		<maxSglPeakWindowMZ>130.5</maxSglPeakWindowMZ>
+	</peakSelectionOptions>
+	<vendorPeakSelectionOptions vendor="3" name="WatersMS2E">
+		<vendorOption type="1" option="bEnableCuda" description="Enable GPU processing">1</vendorOption>
+		<vendorOption type="3" option="chromFWHMMin" description="FWHM in minutes"></vendorOption>
+		<vendorOption type="4" option="heThresholdCounts" description="High energy detection threshold">100</vendorOption>
+		<vendorOption type="5" option="leThresholdCounts" description="Low energy detection threshold">250</vendorOption>
+		<vendorOption type="6" option="lockMassToleranceAMU" description="Lock mass error tolerance">0.25</vendorOption>
+		<vendorOption type="7" option="lockmassZ1" description="Da/e of the external lock spray peak"></vendorOption>
+		<vendorOption type="8" option="lockmassZ2" description="Da/e of the external lock spray peak">785.8427</vendorOption>
+		<vendorOption type="9" option="msResolution" description="MS TOF resolution"></vendorOption>
+	</vendorPeakSelectionOptions>
+	<vendorPeakSelectionOptions vendor="2" name="SciexAnalyst">
+		<vendorOption type="10" option="MaxPeaks" description="Maximum peaks per scan">1999</vendorOption>
+	</vendorPeakSelectionOptions>
+</processingOptions>

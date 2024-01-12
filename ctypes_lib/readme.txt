@@ -1,0 +1,1 @@
+g++ -static -fPIC -shared -o cpplibrary.so cpplibrary.cpp
