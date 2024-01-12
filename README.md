@@ -34,7 +34,7 @@ The details of the input file params.txt are listed below.
 - Fasta_path
   - Protein sequence database path.
 - Data_path
-  - MGF data path.
+  - MGF data path. Use zhouchen_xlms_ptm.ThermoXcalibur.opt to process the RAW data through the Mascot distiller.
 - Max_length
   - Maximum peptide length to be digested.
 - Min_length
