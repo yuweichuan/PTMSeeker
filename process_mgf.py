@@ -1,81 +1,78 @@
-from pyteomics import mgf
-from psims.mzml.writer import MzMLWriter
-import numpy as np
-import time
+# from pyteomics import mgf
+# from psims.mzml.writer import MzMLWriter
 
-
-def gen_mzML(path, out_file):
-    """
-    Convert mgf to mzML file for the non-cleavable XL-MS search engine.
-    :param path: input mgf file path, e.g., input.mgf
-    :param out_file: output mzML, e.g., output.mzML
-    """
-    scans = mgf.read(path, convert_arrays=0)
-    with MzMLWriter(open(out_file, 'wb'), close=True) as out:
-        # Add default controlled vocabularies
-        out.controlled_vocabularies()
-
-        out.file_description([  # the list of file contents terms
-            "MS1 spectrum",
-            "MSn spectrum"
-        ])
-
-        out.software_list([
-            {"id": "psims-writer",
-             "version": "0.1.2",
-             "params": [
-                 "python-psims",
-             ]}
-        ])
-        source = out.Source(1, ["electrospray ionization", "electrospray inlet"])
-        analyzer = out.Analyzer(2, [
-            "quadrupole"
-        ])
-        detector = out.Detector(3, ["inductive detector"])
-        config = out.InstrumentConfiguration(id="IC1", component_list=[source, analyzer, detector],
-                                             params=["LTQ-FT"])
-        out.instrument_configuration_list([config])
-
-        methods = []
-        methods.append(
-            out.ProcessingMethod(
-                order=1, software_reference="psims-writer", params=[
-                    "MS:1000035",  # peak picking
-                    "Conversion to mzML"
-                ]))
-        processing = out.DataProcessing(methods, id='DP1')
-        out.data_processing_list([processing])
-
-        # Open the run and spectrum list sections
-        with out.run(id="my_analysis"):
-            spectrum_count = len(scans)
-            with out.spectrum_list(count=spectrum_count):
-                for scan in scans:
-                    zipped = sorted(zip(scan['m/z array'], scan['intensity array']))
-                    mz_array, intensity_array = zip(*zipped)
-                    bpi = max(intensity_array)
-                    bpmz = mz_array[intensity_array.index(bpi)]
-                    out.write_spectrum(
-                        mz_array, intensity_array,
-                        id='controllerType=0 controllerNumber=1 scan={}'.format(scan['params']['scans']),
-                        # id=scan['params']['scans'],
-                        params=[
-                            "MSn Spectrum",
-                            {"ms level": 2},
-                            {"base peak m/z": bpmz},
-                            {"base peak intensity": bpi, 'unitName': "number of detector counts"},
-                            {"total ion current": sum(intensity_array)}
-                        ],
-                        # Include precursor information
-                        precursor_information={
-                            "mz": scan['params']['pepmass'][0],
-                            "intensity": scan['params']['pepmass'][1],
-                            "charge": int(scan['params']['charge'][0]),
-                            # "scan_id": 99999,
-                            "activation": ["N/A", {"collision energy": 0}],
-                            "isolation_window": [scan['params']['pepmass'][0] - 1, scan['params']['pepmass'][0],
-                                                 scan['params']['pepmass'][0] + 1]
-                        })
+# def gen_mzML(path, out_file):
+#     """
+#     Convert mgf to mzML file for the non-cleavable XL-MS search engine.
+#     :param path: input mgf file path, e.g., input.mgf
+#     :param out_file: output mzML, e.g., output.mzML
+#     """
+#     scans = mgf.read(path, convert_arrays=0)
+#     with MzMLWriter(open(out_file, 'wb'), close=True) as out:
+#         # Add default controlled vocabularies
+#         out.controlled_vocabularies()
+#
+#         out.file_description([  # the list of file contents terms
+#             "MS1 spectrum",
+#             "MSn spectrum"
+#         ])
+#
+#         out.software_list([
+#             {"id": "psims-writer",
+#              "version": "0.1.2",
+#              "params": [
+#                  "python-psims",
+#              ]}
+#         ])
+#         source = out.Source(1, ["electrospray ionization", "electrospray inlet"])
+#         analyzer = out.Analyzer(2, [
+#             "quadrupole"
+#         ])
+#         detector = out.Detector(3, ["inductive detector"])
+#         config = out.InstrumentConfiguration(id="IC1", component_list=[source, analyzer, detector],
+#                                              params=["LTQ-FT"])
+#         out.instrument_configuration_list([config])
+#
+#         methods = []
+#         methods.append(
+#             out.ProcessingMethod(
+#                 order=1, software_reference="psims-writer", params=[
+#                     "MS:1000035",  # peak picking
+#                     "Conversion to mzML"
+#                 ]))
+#         processing = out.DataProcessing(methods, id='DP1')
+#         out.data_processing_list([processing])
+#
+#         # Open the run and spectrum list sections
+#         with out.run(id="my_analysis"):
+#             spectrum_count = len(scans)
+#             with out.spectrum_list(count=spectrum_count):
+#                 for scan in scans:
+#                     zipped = sorted(zip(scan['m/z array'], scan['intensity array']))
+#                     mz_array, intensity_array = zip(*zipped)
+#                     bpi = max(intensity_array)
+#                     bpmz = mz_array[intensity_array.index(bpi)]
+#                     out.write_spectrum(
+#                         mz_array, intensity_array,
+#                         id='controllerType=0 controllerNumber=1 scan={}'.format(scan['params']['scans']),
+#                         # id=scan['params']['scans'],
+#                         params=[
+#                             "MSn Spectrum",
+#                             {"ms level": 2},
+#                             {"base peak m/z": bpmz},
+#                             {"base peak intensity": bpi, 'unitName': "number of detector counts"},
+#                             {"total ion current": sum(intensity_array)}
+#                         ],
+#                         # Include precursor information
+#                         precursor_information={
+#                             "mz": scan['params']['pepmass'][0],
+#                             "intensity": scan['params']['pepmass'][1],
+#                             "charge": int(scan['params']['charge'][0]),
+#                             # "scan_id": 99999,
+#                             "activation": ["N/A", {"collision energy": 0}],
+#                             "isolation_window": [scan['params']['pepmass'][0] - 1, scan['params']['pepmass'][0],
+#                                                  scan['params']['pepmass'][0] + 1]
+#                         })
 
 
 def spectrum_process(mz, intensity, pre_mass, atol=0.02):
@@ -123,7 +120,7 @@ def aa_combination(aa_dict):
 
 if __name__ == '__main__':
     """Serves to reorder the peaks in the mgf and generate mzML file for searching engine."""
-    gen_mzML('ams_00252_mascot.mgf', 'ams_00252_mascot.mzML')
+    # gen_mzML('ams_00252_mascot.mgf', 'ams_00252_mascot.mzML')
 
 
     # a=[1,3,5,7,9]*100

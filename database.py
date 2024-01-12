@@ -1,13 +1,6 @@
 import datetime
-import time
-import pickle
 import concurrent.futures
-import numpy as np
-import os
-from pyteomics import mgf, fasta
-import shutil
-import json
-import logging
+from pyteomics import fasta
 from collections import deque
 import itertools as it
 import re
