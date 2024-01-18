@@ -62,7 +62,7 @@ The details of the input file params.txt are listed below.
 - workers
   - The number of threads to use in the multiprocess.
 - resolution
-  - MS2 tolerance in Dalton. Usually do not exceed 0.02.
+  - MS2 tolerance in Dalton. 0.01 is suggested. Usually do not exceed 0.02.
 
 And the available testing data can be obtained from https://bioinformatics.hkust.edu.hk/Software/PTMSeeker.html
 ## Authors
