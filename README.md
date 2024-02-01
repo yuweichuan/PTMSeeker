@@ -1,5 +1,5 @@
-# PTMSeeker
-PTMSeeker is a screening tool that identifies post-translational modifications (PTMs) in the cross-linking mass spectrometry (XL-MS) data.
+# SeaPIC
+SeaPIC is a screening tool that searches for post-translational modifications (PTMs) in the cross-linking mass spectrometry (XL-MS) data.
 ## Usage
 ### Environment
 1. Fetch all the files in the repository.
@@ -64,7 +64,7 @@ The details of the input file params.txt are listed below.
 - resolution
   - MS2 tolerance in Dalton. 0.01 is suggested. Usually do not exceed 0.02.
 
-And the available testing data can be obtained from https://bioinformatics.hkust.edu.hk/Software/PTMSeeker.html
+And the available testing data can be obtained from https://bioinformatics.hkust.edu.hk/Software/SeaPIC.html
 ## Authors
 czhouau@connect.ust.hk Chen Zhou
 
