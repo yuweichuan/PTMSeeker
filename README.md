@@ -23,7 +23,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 ### Quick start
-You can start the data analysis by running the main.py with the parameter settings in params.txt. The program will output the CSV file for the task.
+Navigate to the SeaPIC directory and place your dataset and database in the designated path. You can start the data analysis by running the main.py with the parameter settings in params.txt. Upon completion, the program will generate CSV files containing the results for the task.
 ```bash
 python main.py params.txt
 ```
