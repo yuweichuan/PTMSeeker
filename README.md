@@ -2,9 +2,10 @@
 SeaPIC is a screening tool that searches for post-translational modifications (PTMs) in the cross-linking mass spectrometry (XL-MS) data.
 ## Usage
 ### Environment
-1. Fetch all the files in the repository.
-2. Install Python (3.6 or above) and add it to the system path. (https://www.python.org/downloads/)
-3. Install numpy, scipy, lxml, and pyteomics packages.
+1. The Windows system is required for SeaPIC.
+2. Fetch all the files in the repository.
+3. Install Python (3.6 or above) and add it to the system path. (https://www.python.org/downloads/)
+4. Install numpy, scipy, lxml, and pyteomics packages.
 ```bash
 pip install numpy scipy lxml pyteomics
 ```
@@ -64,7 +65,6 @@ The details of the input file params.txt are listed below.
 - resolution
   - MS2 tolerance in Dalton. 0.01 is suggested. Usually do not exceed 0.02.
 
-And the available testing data can be obtained from https://bioinformatics.hkust.edu.hk/Software/SeaPIC.html
 ## Authors
 czhouau@connect.ust.hk Chen Zhou
 
